@@ -3,6 +3,7 @@
 from models import storage
 from models.state import State
 from models.city import City
+
 from models.amenity import Amenity
 from os import environ
 from flask import Flask, render_template
@@ -21,9 +22,10 @@ def close_db(error):
 def hbnb_filter():
     """ HBNB filters """
     states = storage.all(State).values()
+    
     states = sorted(states, key=lambda k: k.name)
     st_ct = []
-
+#ninja booom
     for state in states:
         st_ct.append([state, sorted(state.cities, key=lambda k: k.name)])
 
@@ -31,6 +33,7 @@ def hbnb_filter():
     amenities = sorted(amenities, key=lambda k: k.name)
 
     return render_template('10-hbnb_filters.html',
+                           
                            states=st_ct,
                            amenities=amenities)
 
