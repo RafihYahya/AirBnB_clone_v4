@@ -17,12 +17,15 @@ def filters():
     """load filters"""
     cache_id = uuid4()
     states = storage.all(State).values()
+    
     amenities = storage.all(Amenity).values()
+    
     places = storage.all(Place).values()
     return render_template('1-hbnb.html', states=states, amenities=amenities, places=places, cache_id=cache_id)
 
 
 @app.teardown_appcontext
+
 def do_teardown(self):
     """Closes session"""
     storage.close()
