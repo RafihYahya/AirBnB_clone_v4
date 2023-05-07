@@ -3,6 +3,7 @@
 from flask import Flask, abort, render_template
 from models import storage
 from models.state import State
+
 from models.amenity import Amenity
 from models.place import Place
 from uuid import uuid4
@@ -17,8 +18,10 @@ def filters():
     """load filters"""
     cache_id = uuid4()
     states = storage.all(State).values()
+    
     amenities = storage.all(Amenity).values()
     places = storage.all(Place).values()
+    
     return render_template('0-hbnb.html', states=states, amenities=amenities, places=places, cache_id=cache_id)
 
 
