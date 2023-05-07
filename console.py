@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ console """
-
+# importating
 import cmd
 from datetime import datetime
 import models
@@ -8,8 +8,10 @@ from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
 from models.place import Place
+
 from models.review import Review
 from models.state import State
+
 from models.user import User
 import shlex  # for splitting the line along spaces except in double quotes
 
@@ -39,6 +41,7 @@ class HBNBCommand(cmd.Cmd):
         for arg in args:
             if "=" in arg:
                 kvp = arg.split('=', 1)
+           
                 key = kvp[0]
                 value = kvp[1]
                 if value[0] == value[-1] == '"':
@@ -62,6 +65,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         if args[0] in classes:
             new_dict = self._key_value_parser(args[1:])
+           
             instance = classes[args[0]](**new_dict)
         else:
             print("** class doesn't exist **")
@@ -96,6 +100,7 @@ class HBNBCommand(cmd.Cmd):
             if len(args) > 1:
                 key = args[0] + "." + args[1]
                 if key in models.storage.all():
+                                 
                     models.storage.all().pop(key)
                     models.storage.save()
                 else:
